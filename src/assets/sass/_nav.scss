@@ -1,0 +1,37 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  .nav-div {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    .first-li {
+      margin-left: 30px;
+    }
+  }
+  ul.nav-div-right {
+    justify-content: center;
+    gap: 2rem;
+  }
+  .brand-hide {
+    font-size: 1.5rem;
+  }
+}
+.nav-toggole {
+  display: none !important;
+  justify-content: space-between;
+  margin-right: 50px;
+  width: 100%;
+  margin-left: 50px;
+  padding: 30px;
+  // display: none;
+}
+
+#logout-icon:hover {
+  background-color: #d90429;
+  height: 100%;
+  align-items: center;
+}

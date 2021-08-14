@@ -1,0 +1,27 @@
+.btn:hover,
+.btn.hover,
+[open] > .btn,
+.btn:hover,
+.btn.hover,
+[open] > .btn {
+  background-color: #26a69a !important ;
+  border-color: var(--color-btn-hover-border);
+  transition-duration: 0.1s;
+}
+
+.z-depth-1,
+nav,
+.card-panel,
+.card,
+.toast,
+.btn,
+.btn-large,
+.btn-small,
+.btn-floating,
+.dropdown-content,
+.collapsible,
+.sidenav {
+  height: auto;
+  line-height: inherit;
+  box-shadow: none !important;
+}
