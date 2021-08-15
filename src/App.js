@@ -7,7 +7,12 @@ import '@primer/css/utilities/index.scss';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import Navbar from './components/layout/Navbar.jsx';
 import Login from './components/routes/Login';
 import Alerts from './components/layout/Alerts';

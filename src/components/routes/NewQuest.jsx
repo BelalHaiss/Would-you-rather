@@ -36,28 +36,28 @@ const NewQuest = (props) => {
       <p className='ml-2 h4-mktg my-3 text-center'>Would You Rather ?</p>
       <div className='Box-body'>
         <form>
-          <div class='row'>
-            <div class='input-field col s12'>
+          <div className='row'>
+            <div className='input-field col s12'>
               <input
                 id='text'
                 onChange={onChange}
                 name='optionOne'
                 required
                 type='text'
-                class='validate'
+                className='validate'
               />
               <label htmlFor='text'>Enter option one text</label>
             </div>
           </div>
-          <div class='row'>
-            <div class='input-field col s12'>
+          <div className='row'>
+            <div className='input-field col s12'>
               <input
                 id='text2'
                 name='optionTwo'
                 onChange={onChange}
                 required
                 type='text'
-                class='validate'
+                className='validate'
               />
               <label htmlFor='text2'>Enter option two text</label>
             </div>

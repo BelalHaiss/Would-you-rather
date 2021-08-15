@@ -10,12 +10,12 @@ const Alerts = ({ alerts }) => {
             key={alert.id}
             style={{
               borderRadius: '5px',
-              width: '50%',
+              width: '45%',
               margin: '0 auto',
               zIndex: '50000',
               position: 'absolute',
-              top: '13%',
-              left: '30%'
+              top: '15vh',
+              left: '29vw'
             }}
             className={'myAlerts z-depth-1  ' + alert.type}
           >

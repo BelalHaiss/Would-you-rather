@@ -13,8 +13,18 @@ const UserSelect = (props) => {
   }, []);
   const onClick = (e) => {
     singIn(e.target.innerText);
-    props.props.history.push('/');
+    const redirectedFrom = props.props.location.state;
+    const filterPath = redirectedFrom.replace(/\/(\w+)\/(.*)/, '/$1/');
+
+    if (redirectedFrom && filterPath === '/question/') {
+      return props.props.history.push('/');
+    }
+
+    redirectedFrom
+      ? props.props.history.push(filterPath)
+      : props.props.history.push('/');
   };
+
   return (
     <Fragment>
       <details className='details-reset center details-overlay'>

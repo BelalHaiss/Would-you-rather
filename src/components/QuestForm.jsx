@@ -4,28 +4,26 @@ const QuestForm = ({ onSubmit, onClick, quest }) => {
     <form onSubmit={onSubmit}>
       <h5>Would You Rather</h5>
 
-      <div className='form-checkbox'>
+      <p className=''>
         <label>
           <input
             onClick={() => onClick(quest.id, 'optionOne')}
             type='radio'
             name='hireme'
-            style={{ opacity: '100%' }}
           />
-          {quest.optionOne.text} ?
+          <span className=''>{quest.optionOne.text} ?</span>
         </label>
-      </div>
-      <div className='form-checkbox'>
+      </p>
+      <p className=''>
         <label>
           <input
             onClick={() => onClick(quest.id, 'optionTwo')}
             type='radio'
             name='hireme'
-            style={{ opacity: '100%' }}
           />
-          {quest.optionTwo.text} ?
+          <span className=''>{quest.optionTwo.text} ?</span>
         </label>
-      </div>
+      </p>
       <button className='btn btn-success' onClick={onSubmit}>
         Submit
       </button>

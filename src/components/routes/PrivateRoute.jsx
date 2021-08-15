@@ -3,11 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner.jsx';
 
-const PrivateRoute = ({
-  auth: { loading, isAuth },
-  component: Component,
-  ...rests
-}) => {
+const PrivateRoute = (props) => {
+  const {
+    path,
+    auth: { loading, isAuth },
+    component: Component,
+    ...rests
+  } = props;
+
   if (loading) {
     return <Spinner />;
   }
@@ -15,7 +18,11 @@ const PrivateRoute = ({
     <Route
       {...rests}
       render={(props) =>
-        isAuth ? <Component {...props} /> : <Redirect to='/login' />
+        isAuth ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/login', state: path }} />
+        )
       }
     />
   );

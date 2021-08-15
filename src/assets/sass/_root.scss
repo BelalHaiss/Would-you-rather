@@ -10,19 +10,15 @@
   padding: 0;
   box-sizing: inherit;
 }
-
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-
 body {
   font-family: 'Quicksand', 'Comfortaa', Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   display: flex;
-
   flex-direction: column;
   justify-content: space-between;
-  // min-height: 200rem;
 }

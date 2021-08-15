@@ -17,7 +17,7 @@ const QuestItem = (props) => {
     quests: { allQuest }
   } = props;
 
-  const quest = allQuest.find((quest) => quest.id === id);
+  const quest = allQuest?.find((quest) => quest.id === id);
   useEffect(() => {
     const isUserAnswerd =
       quest.optionOne.votes.includes(user[0].id) ||

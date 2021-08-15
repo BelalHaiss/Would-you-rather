@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import sortBy from 'sort-by';
 import { getQuest } from '../../actions/quesActions';
 import Spinner from '../layout/Spinner';
 import QuestionList from '../QuestionList';
@@ -22,8 +23,10 @@ const Home = ({ getQuest, user, quests: { allQuest, questLoading } }) => {
       });
       const unAnswerd = allQuest.filter((quest) => {
         return (
-          quest.optionOne.votes.indexOf(user[0].id) === -1 &&
-          quest.optionTwo.votes.indexOf(user[0].id) === -1
+          //   quest.optionOne.votes.indexOf(user[0].id) === -1 &&
+          //   quest.optionTwo.votes.indexOf(user[0].id) === -1
+          !quest.optionTwo.votes.includes(user[0].id) &&
+          !quest.optionOne.votes.includes(user[0].id)
         );
       });
       return { unAnswerd, answerd };
@@ -73,12 +76,28 @@ const Home = ({ getQuest, user, quests: { allQuest, questLoading } }) => {
             </div>
           )}
         {!questLoading && allQuest !== null && active === 1
-          ? answerState().unAnswerd.map((quest) => (
-              <QuestionList key={quest.id} quest={quest} />
-            ))
-          : answerState().answerd.map((quest) => (
-              <QuestionList key={quest.id} result={true} quest={quest} />
-            ))}
+          ? answerState()
+              .unAnswerd.map((quest) => ({
+                quest: quest,
+                date: quest.timestamp
+              }))
+              .sort(sortBy('-date'))
+              .map((quest) => (
+                <QuestionList key={quest.quest.id} quest={quest.quest} />
+              ))
+          : answerState()
+              .answerd.map((quest) => ({
+                quest: quest,
+                date: quest.timestamp
+              }))
+              .sort(sortBy('-date'))
+              .map((quest) => (
+                <QuestionList
+                  key={quest.quest.id}
+                  result={true}
+                  quest={quest.quest}
+                />
+              ))}
       </div>
     </div>
   );
