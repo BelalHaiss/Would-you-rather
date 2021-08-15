@@ -1,4 +1,4 @@
-# npmWould You Rather?
+# Would You Rather?
 
 This is a web app built using ReactJS, ReduxJS, and their ecosystem as a project for an online course at Udacity.
 
