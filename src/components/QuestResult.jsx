@@ -5,13 +5,15 @@ const QuestResult = (props) => {
   const { user, theQuest, loading, users } = props;
   const { id } = props.match.params;
   const quest = theQuest.filter((quest) => id === quest.id);
-  // eslint-disable-next-line
-  const opt1Active = quest[0].optionOne.votes.includes(user[0].id);
-  // eslint-disable-next-line
-  const opt2Active = quest[0].optionTwo.votes.includes(user[0].id);
   const [activeStyle, setActiveStyle] = useState('');
-  if (!activeStyle) {
-    opt1Active ? setActiveStyle(1) : setActiveStyle(2);
+  if (!loading) {
+    // eslint-disable-next-line
+    const opt1Active = quest[0].optionOne.votes.includes(user[0].id);
+    // eslint-disable-next-line
+    const opt2Active = quest[0].optionTwo.votes.includes(user[0].id);
+    if (!activeStyle) {
+      opt1Active ? setActiveStyle(1) : setActiveStyle(2);
+    }
   }
 
   const opt1 = quest[0].optionOne.votes.length;
@@ -82,7 +84,7 @@ const QuestResult = (props) => {
                     }`
                   }}
                 >
-                  {activeStyle === 1 && (
+                  {activeStyle === 1 && !loading && (
                     <img
                       id='vote-img'
                       width='35px'
@@ -113,7 +115,7 @@ const QuestResult = (props) => {
                     }`
                   }}
                 >
-                  {activeStyle === 2 && (
+                  {activeStyle === 2 && !loading && (
                     <img
                       id='vote-img'
                       width='35px'

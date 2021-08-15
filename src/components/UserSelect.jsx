@@ -20,7 +20,7 @@ const UserSelect = (props) => {
       return props.props.history.push('/');
     }
 
-    redirectedFrom
+    return redirectedFrom
       ? props.props.history.push(filterPath)
       : props.props.history.push('/');
   };
