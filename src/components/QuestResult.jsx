@@ -8,7 +8,6 @@ const QuestResult = (props) => {
   useEffect(() => {
     if (!loading && theQuest) {
       const myQuest = theQuest.filter((quest) => id === quest.id);
-      console.log(myQuest.length);
       myQuest.length > 0 ? setQuest(myQuest) : props.history.push(`/404/`);
     }
   }, []);

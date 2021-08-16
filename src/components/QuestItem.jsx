@@ -40,7 +40,6 @@ const QuestItem = (props) => {
 
   const theAvatar = (author) => {
     if (users) {
-      // console.log(users);
       const user = users.filter((user) => user.id === author);
       if (user) {
         return user[0].avatarURL;

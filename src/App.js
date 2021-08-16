@@ -23,16 +23,6 @@ import { getAllUsers } from './actions/usersActions';
 function App({ getQuest, getAllUsers }) {
   useEffect(() => {
     M.AutoInit();
-    document
-      .querySelector('#nav-toggole-icon')
-      .addEventListener('click', (e) => {
-        const navDivs = document.querySelectorAll('#nav-div');
-        for (let div of navDivs) {
-          div.classList.toggle('show');
-        }
-      });
-  }, []);
-  useEffect(() => {
     getQuest();
     getAllUsers();
   }, []);

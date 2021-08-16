@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutBTN } from '../../actions/usersActions';
 import Spinner from './Spinner';
 const Navbar = ({ logoutBTN, auth: { isAuth, user, loading } }) => {
+  useEffect(() => {
+    document
+      .querySelector('#nav-toggole-icon')
+      .addEventListener('click', (e) => {
+        const navDivs = document.querySelectorAll('#nav-div');
+        for (let div of navDivs) {
+          div.classList.toggle('show');
+        }
+      });
+  }, []);
   if (loading) {
     return <Spinner />;
   }

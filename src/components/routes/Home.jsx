@@ -10,7 +10,6 @@ const Home = ({ user, quests: { allQuest, questLoading } }) => {
   }, []);
 
   const [active, setActive] = useState(1);
-  console.log(allQuest);
   const answerState = () => {
     if (allQuest !== null) {
       const answerd = allQuest.filter((quest) => {
