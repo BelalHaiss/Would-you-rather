@@ -23,9 +23,9 @@ export const getQuest = () => async (dispatch) => {
 export const saveTheAnswer = (obj) => async (dispatch) => {
   try {
     dispatch({ type: setQuestLoading });
-    const res = await _saveQuestionAnswer(obj);
+    await _saveQuestionAnswer(obj);
 
-    setTimeout(() => dispatch({ type: removeQuestLoading }), 1000);
+    dispatch({ type: removeQuestLoading });
     dispatch(handleAlert('Answer Submited Successflly', 'green accent-3'));
   } catch (error) {
     dispatch(handleAlert('problem with submiting the answer', 'red'));

@@ -1,27 +1,24 @@
-import React, { useEffect, Fragment } from 'react';
-import { getAllUsers, singIn } from '../actions/usersActions';
+import React, { Fragment } from 'react';
+import { singIn } from '../actions/usersActions';
 import { connect } from 'react-redux';
 
 const UserSelect = (props) => {
   const {
     singIn,
-    getAllUsers,
-    auth: { loading, users }
+    auth: { users }
   } = props;
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+
   const onClick = (e) => {
     singIn(e.target.innerText);
     const redirectedFrom = props.props.location.state;
-    const filterPath = redirectedFrom.replace(/\/(\w+)\/(.*)/, '/$1/');
+    // const filterPath = redirectedFrom.replace(/\/(\w+)\/(.*)/, '/$1/');
 
-    if (redirectedFrom && filterPath === '/question/') {
-      return props.props.history.push('/');
-    }
+    // if (redirectedFrom && filterPath === '/question/') {
+    //   return props.props.history.push('/');
+    // }
 
     return redirectedFrom
-      ? props.props.history.push(filterPath)
+      ? props.props.history.push(redirectedFrom)
       : props.props.history.push('/');
   };
 
@@ -80,4 +77,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getAllUsers, singIn })(UserSelect);
+export default connect(mapStateToProps, { singIn })(UserSelect);

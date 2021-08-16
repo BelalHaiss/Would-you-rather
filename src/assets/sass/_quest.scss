@@ -4,3 +4,14 @@
   right: 0.5%;
   //   background-color: lightgreen;
 }
+.Progress {
+  position: relative;
+  height: 20px;
+}
+.progress-percent {
+  position: absolute;
+  top: -7px;
+  left: 47%;
+  font-size: 20px;
+  z-index: 900;
+}

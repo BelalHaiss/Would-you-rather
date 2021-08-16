@@ -1,12 +1,20 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Spinner from './layout/Spinner';
 const QuestResult = (props) => {
   const { user, theQuest, loading, users } = props;
   const { id } = props.match.params;
-  const quest = theQuest.filter((quest) => id === quest.id);
+  const [quest, setQuest] = useState(null);
+  useEffect(() => {
+    if (!loading && theQuest) {
+      const myQuest = theQuest.filter((quest) => id === quest.id);
+      console.log(myQuest.length);
+      myQuest.length > 0 ? setQuest(myQuest) : props.history.push(`/404/`);
+    }
+  }, []);
+
   const [activeStyle, setActiveStyle] = useState('');
-  if (!loading) {
+  if (!loading && quest !== null) {
     // eslint-disable-next-line
     const opt1Active = quest[0].optionOne.votes.includes(user[0].id);
     // eslint-disable-next-line
@@ -16,30 +24,32 @@ const QuestResult = (props) => {
     }
   }
 
-  const opt1 = quest[0].optionOne.votes.length;
-  const opt2 = quest[0].optionTwo.votes.length;
-  const allVotes = opt1 + opt2;
   // eslint-disable-next-line
   const percentFunc = () => {
-    if (!loading) {
+    if (!loading && quest !== null) {
+      const opt1 = quest[0].optionOne.votes.length;
+      const opt2 = quest[0].optionTwo.votes.length;
+      const allVotes = opt1 + opt2;
       const opt1Percent = Math.round((opt1 / allVotes) * 100);
       // eslint-disable-next-line
       const opt2Percent = Math.round((opt2 / allVotes) * 100);
-      return { opt1Percent, opt2Percent };
+      return { opt1Percent, opt2Percent, opt1, opt2, allVotes };
     }
   };
 
   const theAvatar = (author) => {
-    const user = users.filter((user) => user.id === author);
-
-    return user[0].avatarURL;
+    if (users) {
+      const user = users.filter((user) => user.id === author);
+      return user[0].avatarURL;
+    }
   };
+  if (loading || quest === null) {
+    return <Spinner />;
+  }
 
   return (
     <Fragment>
-      {loading ? (
-        <Spinner />
-      ) : (
+      {!loading && quest !== null && (
         <div
           className='border '
           style={{ maxWidth: '600px ', margin: '100px auto' }}
@@ -97,12 +107,18 @@ const QuestResult = (props) => {
                   </p>
                   <span className='Progress'>
                     <span
+                      className='progress-percent'
+                      // style={{ left: `${percentFunc().opt1Percent}%` }}
+                    >
+                      {percentFunc().opt1Percent}%
+                    </span>
+                    <span
                       className='Progress-item  color-bg-success-inverse'
                       style={{ width: `${percentFunc().opt1Percent}%` }}
                     ></span>
                   </span>
                   <p className='text-small mt-1 text-center color-text-secondary mr-2'>
-                    {opt1} of {allVotes}
+                    {percentFunc().opt1} of {percentFunc().allVotes}
                   </p>
                 </div>
                 <div
@@ -128,12 +144,18 @@ const QuestResult = (props) => {
                   </p>
                   <span className='Progress'>
                     <span
+                      className='progress-percent'
+                      // style={{ left: `${percentFunc().opt2Percent}%` }}
+                    >
+                      {percentFunc().opt2Percent}%
+                    </span>
+                    <span
                       className='Progress-item color-bg-success-inverse'
                       style={{ width: `${percentFunc().opt2Percent}%` }}
                     ></span>
                   </span>
                   <p className='text-small mt-1 text-center color-text-secondary mr-2'>
-                    {opt2} of {allVotes}
+                    {percentFunc().opt2} of {percentFunc().allVotes}
                   </p>
                 </div>
               </div>

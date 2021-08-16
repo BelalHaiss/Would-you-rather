@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import sortBy from 'sort-by';
-import { getQuest } from '../../actions/quesActions';
 import Spinner from '../layout/Spinner';
 import QuestionList from '../QuestionList';
 
-const Home = ({ getQuest, user, quests: { allQuest, questLoading } }) => {
+const Home = ({ user, quests: { allQuest, questLoading } }) => {
   useEffect(() => {
-    getQuest();
     document.title = 'All Questions';
   }, []);
 
   const [active, setActive] = useState(1);
-
+  console.log(allQuest);
   const answerState = () => {
     if (allQuest !== null) {
       const answerd = allQuest.filter((quest) => {
@@ -107,4 +105,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getQuest })(Home);
+export default connect(mapStateToProps)(Home);

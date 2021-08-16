@@ -5,7 +5,7 @@ import Spinner from '../layout/Spinner.jsx';
 
 const PrivateRoute = (props) => {
   const {
-    path,
+    location: { pathname },
     auth: { loading, isAuth },
     component: Component,
     ...rests
@@ -21,7 +21,7 @@ const PrivateRoute = (props) => {
         isAuth ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/login', state: path }} />
+          <Redirect to={{ pathname: '/login', state: pathname }} />
         )
       }
     />

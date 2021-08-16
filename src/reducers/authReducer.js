@@ -24,7 +24,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case removeLoading:
       return { ...state, loading: false };
     case logout:
-      return initialState;
+      return { ...state, isAuth: false };
     default:
       return state;
   }
