@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../assets/sass/_404.scss';
+import '../../assets/sass/_404.css';
 const NotFound = () => {
   useEffect(() => {
     var Application = (function () {
@@ -42,7 +42,7 @@ const NotFound = () => {
     Application.init();
   }, []);
   return (
-    <div>
+    <div id='ErrorParnet'>
       <h1>404 </h1>
       <div className='frame'>
         <div></div>

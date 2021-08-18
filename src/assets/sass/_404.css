@@ -3,10 +3,10 @@
   padding: 0;
 }
 
-// html {
-//   //   height: 100%;
-//   // overflow: hidden;
-// }
+#ErrorParnet {
+  height: 100%;
+  overflow: hidden;
+}
 
 canvas {
   z-index: 1;

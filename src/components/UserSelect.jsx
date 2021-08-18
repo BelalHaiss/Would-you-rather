@@ -1,12 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 import { singIn } from '../actions/usersActions';
 import { connect } from 'react-redux';
 
 const UserSelect = (props) => {
+  const loginRef = useRef('');
   const {
     singIn,
     auth: { users }
   } = props;
+  console.log();
+  useEffect(() => {
+    if (users) {
+      loginRef.current.click();
+    }
+  }, [users]);
 
   const onClick = (e) => {
     singIn(e.target.innerText);
@@ -26,6 +33,8 @@ const UserSelect = (props) => {
     <Fragment>
       <details className='details-reset center details-overlay'>
         <summary
+          id='summaryLoginBtn'
+          ref={loginRef}
           className='btn'
           style={{ display: 'inline-block' }}
           aria-haspopup='true'
